@@ -36,9 +36,21 @@
 }
 
 .layout-header {
-    height: 60px;
+    height: 45px;
     background: #fff;
     box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+}
+
+.layout-header .right {
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+.username {
+    padding-top: 4px;
+    font-size: 12px;
 }
 
 .layout-logo-left {
@@ -76,49 +88,53 @@
             <Menu :active-name="setActive" theme="dark" width="auto" @on-select="routeTo">
                 <div class="layout-logo-left">
                     <h3>后台管理</h3></div>
-                <Menu-item name="about">
-                    <Icon type="ios-navigate" :size="iconSize"></Icon>
-                    <span class="layout-text">关于</span>
-                </Menu-item>
-                <Menu-item name="form">
-                    <Icon type="document" :size="iconSize"></Icon>
-                    <span class="layout-text">表单</span>
-                </Menu-item>
-                <Menu-item name="table">
-                    <Icon type="navicon" :size="iconSize"></Icon>
-                    <span class="layout-text">表格</span>
-                </Menu-item>
-                <Menu-item name="markdown-viewer">
-                    <Icon type="social-markdown" :size="iconSize"></Icon>
-                    <span class="layout-text">Markdown</span>
-                </Menu-item>
-                <Menu-item name="markdown-editor-1">
-                    <Icon type="edit" :size="iconSize"></Icon>
-                    <span class="layout-text">Md编辑器(1)</span>
-                </Menu-item>
-                <Menu-item name="markdown-editor-2">
-                    <Icon type="edit" :size="iconSize"></Icon>
-                    <span class="layout-text">Md编辑器(2)</span>
-                </Menu-item>
-                <Menu-item name="rtf">
-                    <Icon type="document-text" :size="iconSize"></Icon>
-                    <span class="layout-text">富文本框</span>
-                </Menu-item>
-                <Menu-item name="upload">
-                    <Icon type="ios-cloud-upload-outline" :size="iconSize"></Icon>
-                    <span class="layout-text">文件上传</span>
-                </Menu-item>
-                <Menu-item name="echarts">
-                    <Icon type="pie-graph" :size="iconSize"></Icon>
-                    <span class="layout-text">图表(Echarts)</span>
-                </Menu-item>
+                <MenuGroup title="商品管理">
+                    <Menu-item name="1-1">
+                        <Icon type="ios-navigate" :size="iconSize"></Icon>
+                        <span class="layout-text">商品发布管理</span>
+                    </Menu-item>
+                    <Menu-item name="1-2">
+                        <Icon type="document" :size="iconSize"></Icon>
+                        <span class="layout-text">商品兑换记录</span>
+                    </Menu-item>
+                </MenuGroup>
+                <MenuGroup title="积分管理" >
+                    <Menu-item name="2-1">
+                        <Icon type="navicon" :size="iconSize"></Icon>
+                        <span class="layout-text">用户积分表</span>
+                    </Menu-item>
+                    <Menu-item name="2-2">
+                        <Icon type="pie-graph" :size="iconSize"></Icon>
+                        <span class="layout-text">商家积分清算</span>
+                    </Menu-item>
+                    <Menu-item name="2-3">
+                        <Icon type="pie-graph" :size="iconSize"></Icon>
+                        <span class="layout-text">用户积分明细</span>
+                    </Menu-item>
+                </MenuGroup>
+                <MenuGroup title="系统管理">
+                    <Menu-item name="3-1">
+                        <Icon type="navicon" :size="iconSize"></Icon>
+                        <span class="layout-text">用户管理</span>
+                    </Menu-item>
+                    <Menu-item name="3-2">
+                        <Icon type="pie-graph" :size="iconSize"></Icon>
+                        <span class="layout-text">商家管理</span>
+                    </Menu-item>                    
+                </MenuGroup>
             </Menu>
         </i-col>
         <i-col :span="spanRight">
             <div class="layout-header">
-                <i-button type="text" @click.native="toggleClick">
+                <!-- <i-button type="text" @click.native="toggleClick">
                     <Icon type="navicon" size="32"></Icon>
-                </i-button>
+                </i-button> -->
+                <div class="header-login right">
+                    <!-- <Avatar icon="person" size="small"/> -->
+                    <span class="username">{{ username }}</span>
+                    <!-- <i-button type="text">{{ username }}</i-button> -->
+                    <i-button type="text" @click.native="handleLogout">退出</i-button>
+                </div>
             </div>
             <div class="layout-breadcrumb">
                 <Breadcrumb>
@@ -130,6 +146,7 @@
             <div class="layout-content">
                 <div class="layout-content-main">
                     <transition mode="out-in">
+                        <!-- 跳转的页面区域 -->
                         <router-view></router-view>
                     </transition>
                 </div>
@@ -151,6 +168,7 @@ export default {
             return {
                 spanLeft: 5,
                 spanRight: 19,
+                username: '张三丰',
                 page: ['about','form','table','markdown-viewer', 'markdown-editor-1', 'markdown-editor-2','rtf','upload','echarts']
             }
         },
@@ -173,10 +191,13 @@ export default {
                         this.spanRight = 19;
                     }
                 },
-                routeTo(e) {
-                    //console.log(e);
-                    this.$router.push(e);
-                }
+            routeTo (e) {
+                //console.log(e);
+                this.$router.push(e);
+            },
+            handleLogout () {
+                console.log("Logout");
+            }
         }
 }
 
