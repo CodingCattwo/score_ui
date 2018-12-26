@@ -89,11 +89,15 @@
         <Content class="sendPageContent">
           <div class="card-header" style=" margin-top: 5px;">
             <h2 style="display: inline-block;">当前待清算积分：</h2>
-            <i-input class="input-m" disabled v-model="exchange.scoreToCal"></i-input>
+            <i-input class="input-m" disabled v-model="exchange.scoreToCal">
+              <span slot="append">积分</span>
+            </i-input>
           </div>
           <div class="card-header" style=" margin-top: 5px;">
             <h2 style="display: inline-block;">清算金额：</h2>
-            <i-input class="input-m" v-model="exchange.calMoney"></i-input>
+            <i-input class="input-m" v-model="exchange.calMoney">
+              <span slot="append">元</span>
+            </i-input>
           </div>
           <Row class="footer" type="flex" style="margin-left: 32%; margin-top: 20px;">
             <div class="btn">
@@ -127,7 +131,7 @@
                   <i-button type="primary" @click.native="handleSubmit('formValidate')">查询</i-button>
                 </i-col>
                 <i-col span="10">
-                  <i-button type="primary" @click.native="handleReset('formValidate')" style="margin-left: 16px">重置</i-button>
+                  <i-button type="primary" @click.native="handleReset('formValidate')" style="margin-left: 8px">重置</i-button>
                 </i-col>
               </Row>
             </Form-item>
@@ -267,6 +271,10 @@
             },
             handleCloseSendPage () {
               this.isSendPage = false;
+              this.exchange = {
+                scoreToCal: 10000,
+                calMoney: 100
+              }
             }
         
 

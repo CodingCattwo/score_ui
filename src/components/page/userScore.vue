@@ -89,11 +89,13 @@
         <Content class="sendPageContent">
           <div class="card-header" style=" margin-top: 5px;">
             <h2 style="display: inline-block;">赠送用户：</h2>
-            <i-input class="input-m" disabled v-model="selectedUsername"></i-input>
+            <i-input class="input-m" disabled v-model="exchangeAccount.recipient"></i-input>
           </div>
           <div class="card-header" style=" margin-top: 5px;">
-            <h2 style="display: inline-block;">赠送积分：</h2>
-            <i-input class="input-m" v-model="exchangeAccount.sendScore"></i-input>
+            <h2 v-model="scoreAmount" style="display: inline-block;">赠送积分：</h2>
+            <i-input class="input-m" v-model="exchangeAccount.sendScore">
+              <span slot="append">积分</span>
+            </i-input>
           </div>
           <Row class="footer" type="flex" style="margin-left: 32%; margin-top: 20px;">
             <div class="btn">
@@ -121,7 +123,7 @@
             <Form-item span="6" label="联系方式：" prop="contact">
                 <i-input class="input-m" v-model="formValidate.contact" placeholder="-模糊搜索-"></i-input>
             </Form-item>
-            <Form-item span="6" label="用户类型" prop="usertype">
+            <Form-item span="6" label="用户类型：" prop="usertype">
               <i-select v-model="formValidate.userType" class="input-m" :value.sync="formValidate.usertype" placeholder="--请选择--">
                   <i-option value="1">电信</i-option>
                   <i-option value="2">非电信</i-option>
@@ -129,7 +131,7 @@
             </Form-item>
           </Row>
           <Row :gutter="16" type="flex">
-            <Form-item span="6" label="账号类型" prop="accounttype">
+            <Form-item span="6" label="账号类型：" prop="accounttype" style="margin-left: 8px">
               <i-select v-model="formValidate.accountType" class="input-m" :value.sync="formValidate.usertype" placeholder="--请选择--">
                   <i-option value="1">家庭光纤类</i-option>
                   <i-option value="2">企业光纤类</i-option>
@@ -170,12 +172,11 @@
                 // tableData1: this.mockTableData1(),
                 self: this,
                 exchangeAccount: {
-                  score: 10000,
-                  sendAccount: '',
-                  sendScore: ''
+                  recipient: '',
+                  sendScore: 10000
                 },
                 selectedRowId: '',
-                selectedUsername: '',
+                // selectedUsername: '',
                 columns7: [
                     {
                         title: '用户账号',
@@ -268,7 +269,7 @@
             },
             handleSelectedRow (rowData) {
               // console.log(obj);
-              this.selectedUsername = rowData.username;
+              this.exchangeAccount.recipient = rowData.username;
               // this.$Message.success("id: " + rowData.username + "操作后台数据中");
             },
             // handleEdit (rowId) {
@@ -289,6 +290,9 @@
             },
             handleCloseSendPage () {
               this.isSendPage = false;
+            },
+            handleSend () {
+              console.log(this.exchangeAccount);
             }
         
 

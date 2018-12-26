@@ -139,7 +139,6 @@
             <div class="layout-breadcrumb">
                 <Breadcrumb>
                     <Breadcrumb-item>首页</Breadcrumb-item>
-                    <Breadcrumb-item>页面</Breadcrumb-item>
                     <Breadcrumb-item>{{this.$route.path.replace('/','')}}</Breadcrumb-item>
                 </Breadcrumb>
             </div>
@@ -168,7 +167,7 @@ export default {
             return {
                 spanLeft: 5,
                 spanRight: 19,
-                username: '张三丰',
+                username: '李时珍',
                 page: ['about','form','table','markdown-viewer', 'markdown-editor-1', 'markdown-editor-2','rtf','upload','echarts']
             }
         },
@@ -196,7 +195,7 @@ export default {
                 this.$router.push(e);
             },
             handleLogout () {
-                console.log("Logout");
+                this.$router.push('/login');
             }
         }
 }

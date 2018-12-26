@@ -11,47 +11,48 @@
 <template>
   <div>
     <div class="form">
-      <i-form ref:form-validate :model="formValidate"  :label-width="80">
+      <i-form :model="userValidate"  :label-width="80">
         <Row :gutter="8" type="flex">
-          <Form-item span="6" label="活动编号：" prop="number" style="margin-left: 8px">
-              <i-input class="input-m" v-model="formValidate.number" placeholder="-模糊搜索-"></i-input>
+          <Form-item span="6" label="商家账户：" prop="account" style="margin-left: 8px">
+              <i-input class="input-m" v-model="userValidate.account" placeholder="-模糊搜索-"></i-input>
           </Form-item>
-          <Form-item span="6" label="商品名称：" prop="name">
-              <i-input class="input-m" v-model="formValidate.name" placeholder="-模糊搜索-"></i-input>
+          <Form-item span="6" label="商家名称：" prop="saleName" >
+              <i-input class="input-m" v-model="userValidate.saleName" placeholder="-模糊搜索-"></i-input>
           </Form-item>
-          <Form-item span="6" label="商品类型：" prop="type">
-              <i-select v-model="formValidate.type" class="input-m" :value.sync="formValidate.type" placeholder="--请选择--">
-                  <i-option value="1">电信产品</i-option>
-                  <i-option value="2">餐厨</i-option>
-                  <i-option value="3">配件</i-option>
-                  <i-option value="4">电器</i-option>
-                  <i-option value="5">车载</i-option>
-              </i-select>
-          </Form-item>
-          <Form-item span="6" label="发布商家：" prop="sale">
-              <i-input class="input-m" v-model="formValidate.sale" placeholder="-模糊搜索-"></i-input>
-          </Form-item>
-        </Row>
-        <Row :gutter="8" type="flex">
-          <Form-item label="选择日期：" style="margin-left: 8px">
+          <Form-item label="创建时间：" style="margin-left: 8px">
               <Row type="flex">
                   <i-col span="8">
                       <Form-item prop="date1">
-                          <Date-picker type="date" placeholder="请选择日期" v-model="formValidate.date1"></Date-picker>
+                          <Date-picker type="date" placeholder="请选择日期" v-model="userValidate.date1"></Date-picker>
                       </Form-item>
                   </i-col>
                   <i-col span="1" style="text-align: center">-</i-col>
                   <i-col span="8">
                       <Form-item prop="date2">
-                          <Date-picker type="date" placeholder="请选择日期" v-model="formValidate.date2"></Date-picker>
+                          <Date-picker type="date" placeholder="请选择日期" v-model="userValidate.date2"></Date-picker>
                       </Form-item>
-                  </i-col>
-                  <i-col span="6" offset="1">
-                    <i-button type="primary" @click.native="handleSubmit('formValidate')">查询</i-button>
-                    <i-button type="primary" @click.native="handleReset('formValidate')" style="margin-left: 8px">重置</i-button>
                   </i-col>
               </Row>
           </Form-item>
+        </Row>
+        <Row :gutter="8" type="flex">
+          <Form-item span="6" label="商家分类：" prop="accounttype" style="margin-left: 8px">
+            <i-select v-model="userValidate.saleType" class="input-m" :value.sync="userValidate.saleType" placeholder="--请选择--">
+                <i-option value="1">家庭光纤类</i-option>
+                <i-option value="2">企业光纤类</i-option>
+                <i-option value="3">手机卡类</i-option>
+                <i-option value="4">IPTV类</i-option>
+                <i-option value="5">其他类</i-option>
+            </i-select>
+          </Form-item>
+          <Row type="flex">
+            <i-col span="10" offset="1">
+              <i-button type="primary" @click.native="handleSubmit('userValidate')">查询</i-button>
+            </i-col>
+            <i-col span="10">
+              <i-button type="primary" @click.native="handleReset('userValidate')" style="margin-left: 8px">重置</i-button>
+            </i-col>
+          </Row>
         </Row>
     </i-form>
     </div>
@@ -80,60 +81,70 @@
                 selectedRowId: '',
                 columns7: [
                     {
-                        title: '活动编号',
-                        key: 'number',
+                        title: '用户账号',
+                        key: 'account',
                         align: 'center',
-                        width: 100,
+                        width: 180,
+                        minWidth: 120,
                         render: (h, params) => {
-                            return h('div', params.row.number);
+                            return h('div', params.row.account);
                         }
                     },
                     {
-                        title: '商品名称',
-                        key: 'name',
-                        minWidth: 150,
-                        align: 'center'
-                    },
-                    {
-                        title: '商品类型',
-                        key: 'type',
+                        title: '商家名称',
+                        key: 'saleName',
                         align: 'center',
-                        width: 100
+                        width: 250,
+                        minWidth: 120
                     },
                     {
-                        title: '兑换积分',
-                        key: 'score',
+                        title: '用户类型',
+                        key: 'userType',
                         align: 'center',
-                        width: 100
+                        width: 100,
+                        minWidth: 100
                     },
                     {
-                        title: '已兑数量',
-                        key: 'amount',
+                        title: '联系人',
+                        key: 'contactName',
                         align: 'center',
-                        width: 100
+                        width:  80
                     },
                     {
-                        title: '发布时间',
-                        key: 'time',
-                        width: 200,
+                        title: '手机号',
+                        key: 'contact',
+                        width: 100,
                         align: 'center',
                         ellipsis: true
                     },
                     {
-                        title: '发布商家',
-                        key: 'sale',
+                        title: '通讯地址',
+                        key: 'contactAddress',
                         align: 'center',
-                        width: 140
+                        width: 200,
+                        minWidth: 120
                     },
+                    {
+                        title: '最后修改时间',
+                        key: 'lastEditTime',
+                        align: 'center',
+                        width: 170,
+                        minWidth: 120,
+                    },
+                    {
+                        title: '状态',
+                        key: 'status',
+                        align: 'center',
+                        width: 80
+                    }
                 ],
                 data6: this.mockTableData1(),
-                formValidate: {
-                    number: '',
-                    name: '',
-                    type: '',
-                    sale: '',
+                userValidate: {
+                    account: '',
+                    saleName: '',
                     date1: '',
-                    date2: ''
+                    date2: '',
+                    saleType: '',
                 }
             }
         },
@@ -142,7 +153,7 @@
                 let data = [];
                 for (let i = 0; i < 10; i++) {
                     data.push({
-                        number: Math.floor(Math.random () * 10 + 1)
+                        account: Math.floor(Math.random () * 10 + 1)
                     })
                 }
                 return data;
@@ -150,17 +161,16 @@
             handleSubmit(name) {
                 // 传值选中行的id编号到后台
                 console.log("表单数据：");
-                console.log(this.formValidate);
+                console.log(this.userValidate);
                 this.$Message.success('console中查看表单数据');
             },
             handleReset(name) {
-                this.formValidate = {
-                    number: '',
-                    name: '',
-                    type: '',
-                    sale: '',
+                this.userValidate = {
+                    account: '',
+                    saleName: '',
                     date1: '',
-                    date2: ''
+                    date2: '',
+                    saleType: '',
                 }; 
                 this.$Message.warning('这是一条警告的提示');
             },
@@ -174,7 +184,7 @@
             },
             handleAdd () {
               // window.open(window.location.origin + '/addproduct');
-              this.$router.push({path: '/addproduct'});
+              this.$router.push({path: '/addsale'});
               // this.$router.push({path: '/cart?goodsId=12'})
             },
             changePage () {

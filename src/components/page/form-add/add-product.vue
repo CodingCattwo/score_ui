@@ -175,7 +175,7 @@
             <i-button type="success"  long size="large" @click.native="handleSubmit">   保存   </i-button>
           </div>
           <div class="btn">
-            <i-button type="default" long size="large" @click.native="Back" style="margin-left: 8px">   取消   </i-button>
+            <i-button type="default" long size="large" @click.native="Back" style="margin-left: 8px">   关闭   </i-button>
           </div>
         </Row>
         <Footer >
@@ -212,7 +212,14 @@ export default {
         info: '',
         description: '',
         img: this.uploadList
-      }
+      },
+    //   rules: {
+    //     account: [
+    //         {required: true, message: '请输入用户账号', trigger: 'change'},
+    //         {min: 2, max: 20, message: '长度在 2 到20个字符', trigger: 'change'},
+    //         {validator: validateAccount, trigger: 'blur'}
+    //     ]
+    //   }
     }
   },
   methods: {

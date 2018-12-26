@@ -79,7 +79,7 @@
 
 <template>
   <div>
-    <div v-show="isSendPage" class="sendPage">
+    <!-- <div v-show="isSendPage" class="sendPage">
       <Layout>
         <Header>
           <div class="header-title">
@@ -107,36 +107,39 @@
         
       </Layout>
       <div class="line"></div>
-    </div>
+    </div> -->
     <div :class="isSendPage ? 'isShowSendPage' : 'noSendPag'" >
       <div class="form">
         <i-form ref:form-validate :model="formValidate"  :label-width="80">
           <Row :gutter="16" type="flex">
-            <Form-item span="6" label="用户账户：" prop="account" style="margin-left: 8px">
-                <i-input class="input-m" v-model="formValidate.account" placeholder="-模糊搜索-"></i-input>
-            </Form-item>
-            <Form-item span="6" label="用户名称：" prop="username">
+            <Form-item span="6" label="用户名称：" prop="username" style="margin-left: 8px"> 
                 <i-input class="input-m" v-model="formValidate.username" placeholder="-模糊搜索-"></i-input>
             </Form-item>
-            <Form-item span="6" label="联系方式：" prop="contact">
-                <i-input class="input-m" v-model="formValidate.contact" placeholder="-模糊搜索-"></i-input>
+            <Form-item span="6" label="用户账号：" prop="account">
+                <i-input class="input-m" v-model="formValidate.account" placeholder="-模糊搜索-"></i-input>
             </Form-item>
-            <Form-item span="6" label="用户类型" prop="usertype">
-              <i-select v-model="formValidate.userType" class="input-m" :value.sync="formValidate.usertype" placeholder="--请选择--">
-                  <i-option value="1">电信</i-option>
-                  <i-option value="2">非电信</i-option>
+            <Form-item span="6" label="积分变动：" prop="inOrOUt">
+              <i-select v-model="formValidate.userType" class="input-m" :value.sync="formValidate.inOrOUt" placeholder="--请选择--">
+                  <i-option value="1">入账</i-option>
+                  <i-option value="2">出账</i-option>
               </i-select>
             </Form-item>
           </Row>
           <Row :gutter="16" type="flex">
-            <Form-item span="6" label="账号类型" prop="accounttype">
-              <i-select v-model="formValidate.accountType" class="input-m" :value.sync="formValidate.usertype" placeholder="--请选择--">
-                  <i-option value="1">家庭光纤类</i-option>
-                  <i-option value="2">企业光纤类</i-option>
-                  <i-option value="3">手机卡类</i-option>
-                  <i-option value="4">IPTV类</i-option>
-                  <i-option value="5">其他类</i-option>
-              </i-select>
+            <Form-item label="兑换时间：" style="margin-left: 8px">
+                <Row type="flex">
+                    <i-col span="8">
+                        <Form-item prop="date1">
+                            <Date-picker type="date" placeholder="请选择日期" v-model="formValidate.date1"></Date-picker>
+                        </Form-item>
+                    </i-col>
+                    <i-col span="1" style="text-align: center">-</i-col>
+                    <i-col span="8">
+                        <Form-item prop="date2">
+                            <Date-picker type="date" placeholder="请选择日期" v-model="formValidate.date2"></Date-picker>
+                        </Form-item>
+                    </i-col>
+                </Row>
             </Form-item>
             <Row type="flex">
               <i-col span="10" offset="1">
@@ -149,11 +152,11 @@
           </Row>
         </i-form>
       </div>
-      <div class="table-btn">
+      <!-- <div class="table-btn">
         <Row type="flex" justify="end" style="margin-right: 8px;">
           <i-button type="success" @click.native="handleShowSendPage">赠送积分</i-button>
         </Row>
-      </div>
+      </div> -->
       <Table :content="self" :columns="columns7" :data="data6" highlight-row @on-current-change="handleSelectedRow" border size="small"></Table>
       <div style="margin: 10px;overflow: hidden">
         <div style="float: right;">
@@ -169,11 +172,6 @@
             return {
                 // tableData1: this.mockTableData1(),
                 self: this,
-                exchangeAccount: {
-                  score: 10000,
-                  sendAccount: '',
-                  sendScore: ''
-                },
                 selectedRowId: '',
                 selectedUsername: '',
                 columns7: [
@@ -194,33 +192,28 @@
                         width: 120,
                     },
                     {
-                        title: '联系方式',
-                        key: 'contact',
+                        title: '积分变动',
+                        key: 'inOrOut',
                         align: 'center',
                         width: 120
                     },
                     {
-                        title: '用户积分',
-                        key: 'userScore',
+                        title: '数量',
+                        key: 'amount',
                         align: 'center',
                         width: 120
                     },
                     {
-                        title: '用户类型',
-                        key: 'userType',
+                        title: '描述',
+                        key: 'exchangeDetail',
                         align: 'center',
-                        width: 120
+                        width: 250,
+                        midWidth: 150
                     },
                     {
-                        title: '账号类型',
-                        key: 'accountType',
-                        align: 'center',
-                        width: 100
-                    },
-                    {
-                        title: '所在城市',
+                        title: '统计日期',
                         key: 'time',
-                        width: 200,
+                        width: 170,
                         minWidth: 120,
                         align: 'center',
                         ellipsis: true
@@ -230,9 +223,11 @@
                 formValidate: {
                     account: '',
                     username: '',
-                    contact: '',
-                    userType: '',
-                    accountType: ''
+                    inOrOut: '',
+                    amount: '',
+                    date1: '',
+                    date2: '',
+                    exchangeDetail: '',
                 },
                 isSendPage: false
             }

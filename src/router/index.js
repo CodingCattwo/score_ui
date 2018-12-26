@@ -5,11 +5,11 @@ Vue.use(Router);
 
 export default new Router({
     routes: [
-        // {
-        //     path: '/',
-        //     redirect: '/about'
-        //     // redirect: '/login'
-        // },
+        {
+            path: '/',
+            redirect: '/login'
+            // redirect: '/login'
+        },
         {
             path: '/',
             component: resolve => require(['../components/common/index.vue'], resolve),
@@ -39,17 +39,25 @@ export default new Router({
                 },
                 {
                     path: '/3-1',
-                    component: resolve => require(['../components/page/table.vue'], resolve)
+                    component: resolve => require(['../components/page/userManage.vue'], resolve)
                 },
                 {
                     path: '/3-2',
-                    component: resolve => require(['../components/page/table.vue'], resolve)
+                    component: resolve => require(['../components/page/saleManage.vue'], resolve)
                 }
             ]
         },
         {
             path: '/addproduct',
             component: resolve => require(['../components/page/form-add/add-product.vue'], resolve)
+        },
+        {
+            path: '/adduser',
+            component: resolve => require(['../components/page/form-add/add-user.vue'], resolve)
+        },
+        {
+            path: '/addsale',
+            component: resolve => require(['../components/page/form-add/add-sale.vue'], resolve)
         },
         {
             path: '/login',
