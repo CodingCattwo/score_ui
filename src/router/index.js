@@ -7,13 +7,14 @@ export default new Router({
     routes: [
         {
             path: '/',
-            redirect: '/login'
+            redirect: '/index'
             // redirect: '/login'
         },
         {
             path: '/',
             component: resolve => require(['../components/common/index.vue'], resolve),
-            children: [{
+            children: [
+                {
                     path: '',
                     component: resolve => require(['../components/common/about.vue'], resolve)
                 },
@@ -63,5 +64,23 @@ export default new Router({
             path: '/login',
             component: resolve => require(['../components/common/login.vue'], resolve)
         },
+        {
+            path: '/index',
+            component: resolve => require(['../components/e-mall/telecom/index.vue'], resolve),
+            children: [
+                {
+                    path: '/home',
+                    component: resolve => require(['../components/e-mall/telecom/homepage.vue'], resolve)
+                },
+                {
+                    path: '/exchange',
+                    component: resolve => require(['../components/e-mall/telecom/exchange.vue'], resolve)
+                },
+                {
+                    path: '/mine',
+                    component: resolve => require(['../components/e-mall/telecom/mine.vue'], resolve)
+                },
+            ]
+        }
     ]
 })
