@@ -7,7 +7,7 @@ export default new Router({
     routes: [
         {
             path: '/',
-            redirect: '/index'
+            redirect: '/home'
             // redirect: '/login'
         },
         {
@@ -65,7 +65,7 @@ export default new Router({
             component: resolve => require(['../components/common/login.vue'], resolve)
         },
         {
-            path: '/index',
+            path: '/telecom',
             component: resolve => require(['../components/e-mall/telecom/index.vue'], resolve),
             children: [
                 {
@@ -78,9 +78,81 @@ export default new Router({
                 },
                 {
                     path: '/mine',
-                    component: resolve => require(['../components/e-mall/telecom/mine.vue'], resolve)
+                    component: resolve => require(['../components/e-mall/telecom/mine.vue'], resolve),
+                    children: [
+                        {
+                            path: '/myScore',
+                            component: resolve => require(['../components/e-mall/telecom/mine/my-score.vue'], resolve),
+                        }
+                    ]
                 },
+                {
+                    path: '/goodsList',
+                    component: resolve => require(['../components/e-mall/telecom/page/goods-list.vue'], resolve)
+                },
+                {
+                    path: '/goodsDetail',
+                    component: resolve => require(['../components/e-mall/telecom/page/goods-detail.vue'], resolve)
+                },
+                {
+                    path: '/order',
+                    component: resolve => require(['../components/e-mall/telecom/page/order.vue'], resolve)
+                },
+                {
+                    path: '/pay',
+                    component: resolve => require(['../components/e-mall/telecom/page/pay.vue'], resolve)
+                },
+                {
+                    path: '/exchangeDetail',
+                    component: resolve => require(['../components/e-mall/telecom/page/exchange-detail.vue'], resolve)
+                }
+                
             ]
-        }
+        },
+        // {
+        //     path: '/airline',
+        //     component: resolve => require(['../components/e-mall/airline/index.vue'], resolve),
+        //     children: [
+        //         {
+        //             path: '/home',
+        //             component: resolve => require(['../components/e-mall/airline/homepage.vue'], resolve)
+        //         },
+        //         {
+        //             path: '/exchange',
+        //             component: resolve => require(['../components/e-mall/airline/exchange.vue'], resolve)
+        //         },
+        //         {
+        //             path: '/mine',
+        //             component: resolve => require(['../components/e-mall/airline/mine.vue'], resolve),
+        //             children: [
+        //                 {
+        //                     path: '/myScore',
+        //                     component: resolve => require(['../components/e-mall/airline/mine/my-score.vue'], resolve),
+        //                 }
+        //             ]
+        //         },
+        //         {
+        //             path: '/goodsList',
+        //             component: resolve => require(['../components/e-mall/airline/page/goods-list.vue'], resolve)
+        //         },
+        //         {
+        //             path: '/goodsDetail',
+        //             component: resolve => require(['../components/e-mall/airline/page/goods-detail.vue'], resolve)
+        //         },
+        //         {
+        //             path: '/order',
+        //             component: resolve => require(['../components/e-mall/airline/page/order.vue'], resolve)
+        //         },
+        //         {
+        //             path: '/pay',
+        //             component: resolve => require(['../components/e-mall/airline/page/pay.vue'], resolve)
+        //         },
+        //         {
+        //             path: '/exchangeDetail',
+        //             component: resolve => require(['../components/e-mall/airline/page/exchange-detail.vue'], resolve)
+        //         }
+                
+        //     ]
+        // }
     ]
 })

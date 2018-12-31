@@ -9,7 +9,7 @@
             </li> -->
             <li>
               <Icon type="android-volume-up" class="icon"></Icon>
-              <span>您好，欢迎来到中国电信积分交易商城</span>
+              <span>您好，欢迎来到南航里程交易商城</span>
             </li>
           </ul>
           <ul class="detail">
@@ -24,7 +24,7 @@
     </Header>
     <Content>
       <div class="logoContainer">
-        <img class="logo" src="/static/images/telecom/logo.png">
+        <img class="logo" src="/static/images/airline/logo.png">
       </div>
       <div class="searchContainer">
         <Input class="search" v-model="searchData" size="large" placeholder="请输入搜索的内容" clearable>
@@ -38,11 +38,11 @@
         </MenuItem>
         <MenuItem name="exchange">
           <Icon type="ios-people"></Icon>
-          积分互通
+          里程互通
         </MenuItem>
         <MenuItem name="mine">
           <Icon type="settings"></Icon>
-          我的积分
+          我的里程
         </MenuItem>
       </Menu>
     
@@ -65,13 +65,13 @@
             <p class="info"><Icon class="icon" type="loop" size="30"></Icon> 积分兑换互通</p>
           </i-col>
           <i-col span="6" offset="1">
-            <p class="info"><Icon class="icon" type="happy-outline"  size="30"></Icon> 商品质保证</p>
+            <p class="info"><Icon class="icon" type="happy-outline"  size="30"></Icon> 品质保证</p>
           </i-col>
         </Row>
       </div>
       <div class="line"></div>
-      <div style="margin-bottom: 10px;">增值电信业务经营许可证A2.B1.B2-20090001 |   商户合作邮箱  |  中国电信统一门户 |  京ICP备09031924号</div>
-      <div>版权所有(C)中国电信集团公司</div>
+      <div style="margin-bottom: 10px;">增值南航业务经营许可证A2.B1.B2-20090001 |   商户合作邮箱  |  南航统一门户 |  京ICP备09031924号</div>
+      <div>版权所有(C)中国南方航空公司</div>
     </Footer>
   </div>
 </template>
